@@ -77,6 +77,9 @@ async function filterByCategory(categoryName) {
     grid.innerHTML += createMealCard(meal);
   });
 }
+document.getElementById("all-recipes-btn").addEventListener("click", function () {
+  getMales();
+});
 getCategories();
 getMales();
 
