@@ -28,7 +28,12 @@ function createMealCard(meal) {
 async function getMales() {
     const response = await fetch("https://nutriplan-api.vercel.app/api/meals/random?count=25");
     const data = await response.json();
-    console.log(data);
+    const grid = document.getElementById("recipes-grid");
+    grid.innerHTML = "";
+    data.results.forEach(function(meal){
+        grid.innerHTML +=createMealCard(meal);
+
+    });
 }
 getMales();
 
