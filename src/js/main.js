@@ -52,7 +52,13 @@ function createCategoryCard(category) {
 async function getCategories() {
 const response = await fetch("https://nutriplan-api.vercel.app/api/meals/categories");
 const data = await response.json();
-console.log(data);
+const grid = document.getElementById("categories-grid");
+grid.innerHTML = "";
+
+data.results.forEach(function(category){
+        grid.innerHTML += createCategoryCard(category);
+
+});
 }
 getCategories();
 getMales();
