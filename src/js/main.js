@@ -35,5 +35,11 @@ async function getMales() {
 
     });
 }
+ async function getCategories() {
+const response = await fetch("https://nutriplan-api.vercel.app/api/meals/categories");
+const data = await response.json();
+console.log(data);
+}
+getCategories();
 getMales();
 
