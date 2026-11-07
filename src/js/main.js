@@ -34,6 +34,11 @@ async function getMales() {
         grid.innerHTML +=createMealCard(meal);
 
     });
+    document.querySelectorAll(".recipe-card").forEach(function (card) {
+    card.addEventListener("click", function () {
+      console.log(card.dataset.mealId);
+    });
+  });
 }
 function createCategoryCard(category) {
   return`
