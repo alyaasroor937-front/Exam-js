@@ -59,6 +59,23 @@ data.results.forEach(function(category){
         grid.innerHTML += createCategoryCard(category);
 
 });
+document.querySelectorAll(".category-card").forEach(function (card) {
+    card.addEventListener("click", function () {
+      filterByCategory(card.dataset.category);
+    });
+});
+}
+
+async function filterByCategory(categoryName) {
+  const response = await fetch(`https://nutriplan-api.vercel.app/api/meals/filter?category=${categoryName}&limit=25`);
+  const data = await response.json();
+
+  const grid = document.getElementById("recipes-grid");
+  grid.innerHTML = "";
+
+  data.results.forEach(function (meal) {
+    grid.innerHTML += createMealCard(meal);
+  });
 }
 getCategories();
 getMales();
