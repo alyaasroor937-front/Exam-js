@@ -36,7 +36,7 @@ async function getMales() {
     });
     document.querySelectorAll(".recipe-card").forEach(function (card) {
     card.addEventListener("click", function () {
-      console.log(card.dataset.mealId);
+      getMealDetails(card.dataset.mealId);
     });
   });
 }
@@ -81,10 +81,16 @@ async function filterByCategory(categoryName) {
   data.results.forEach(function (meal) {
     grid.innerHTML += createMealCard(meal);
   });
+ 
 }
 document.getElementById("all-recipes-btn").addEventListener("click", function () {
   getMales();
 });
+ async function getMealDetails(id) {
+  const response = await fetch(`https://nutriplan-api.vercel.app/api/meals/${id}`);
+  const data = await response.json();
+  console.log(data.result);
+}
 getCategories();
 getMales();
 
