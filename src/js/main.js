@@ -89,8 +89,17 @@ document.getElementById("all-recipes-btn").addEventListener("click", function ()
  async function getMealDetails(id) {
   const response = await fetch(`https://nutriplan-api.vercel.app/api/meals/${id}`);
   const data = await response.json();
-  console.log(data.result);
+  const meal = data.result;
+
+  document.getElementById("hero-image").src = meal.thumbnail;
+  document.getElementById("hero-title").textContent = meal.name;
+  document.getElementById("hero-category").textContent = meal.category;
+  document.getElementById("hero-area").textContent = meal.area;
+
+  document.getElementById("all-recipes-section").classList.add("hidden");
+  document.getElementById("meal-details").classList.remove("hidden");
 }
+document.getElementById("meal-details").classList.add("hidden");
 getCategories();
 getMales();
 
