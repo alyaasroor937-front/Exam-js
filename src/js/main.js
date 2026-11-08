@@ -86,6 +86,17 @@ async function filterByCategory(categoryName) {
 document.getElementById("all-recipes-btn").addEventListener("click", function () {
   getMales();
 });
+function createIngredientItem(item) {
+  return` 
+    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
+      <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
+      <span class="text-gray-700">
+        <span class="font-medium text-gray-900">${item.measure}</span>
+        ${item.ingredient}
+      </span>
+    </div>
+  `;
+}
  async function getMealDetails(id) {
   const response = await fetch(`https://nutriplan-api.vercel.app/api/meals/${id}`);
   const data = await response.json();
