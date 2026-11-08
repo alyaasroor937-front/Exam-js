@@ -136,7 +136,13 @@ document.getElementById("log-meal-btn").addEventListener("click", function () {
 function renderFoodLog() {
   const log = JSON.parse(localStorage.getItem("foodLog")) || [];
   const list = document.getElementById("logged-items-list");
+let totalCal = 0;
+log.forEach(function (item) {
+  totalCal += item.calories;
+});
 
+document.getElementById("cal-text").textContent = totalCal + " / 2000 kcal";
+document.getElementById("cal-bar").style.width = Math.min((totalCal / 2000) * 100, 100) + "%";
   if (log.length === 0) return;
 
   list.innerHTML = "";
