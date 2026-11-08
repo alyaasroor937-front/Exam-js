@@ -101,6 +101,7 @@ function createIngredientItem(item) {
   const response = await fetch(`https://nutriplan-api.vercel.app/api/meals/${id}`);
   const data = await response.json();
   const meal = data.result;
+  currentMeal = meal;
 
   document.getElementById("hero-image").src = meal.thumbnail;
   document.getElementById("hero-title").textContent = meal.name;
@@ -121,6 +122,15 @@ document.getElementById("meal-details").classList.add("hidden");
 document.getElementById("back-to-meals-btn").addEventListener("click", function () {
   document.getElementById("meal-details").classList.add("hidden");
   document.getElementById("all-recipes-section").classList.remove("hidden");
+});
+let currentMeal = null;
+
+document.getElementById("log-meal-btn").addEventListener("click", function () {
+  if (!currentMeal) return;
+  const log = JSON.parse(localStorage.getItem("foodLog")) || [];
+  log.push({ id: currentMeal.id, name: currentMeal.name, calories: 485, protein: 42, carbs: 52, fat: 8 });
+  localStorage.setItem("foodLog", JSON.stringify(log));
+  alert("Meal logged!");
 });
 getCategories();
 getMales();
