@@ -100,6 +100,10 @@ document.getElementById("all-recipes-btn").addEventListener("click", function ()
   document.getElementById("meal-details").classList.remove("hidden");
 }
 document.getElementById("meal-details").classList.add("hidden");
+document.getElementById("back-to-meals-btn").addEventListener("click", function () {
+  document.getElementById("meal-details").classList.add("hidden");
+  document.getElementById("all-recipes-section").classList.remove("hidden");
+});
 getCategories();
 getMales();
 
