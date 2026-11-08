@@ -106,7 +106,14 @@ function createIngredientItem(item) {
   document.getElementById("hero-title").textContent = meal.name;
   document.getElementById("hero-category").textContent = meal.category;
   document.getElementById("hero-area").textContent = meal.area;
+const ingredientsGrid = document.getElementById("ingredients-grid");
+ingredientsGrid.innerHTML = "";
 
+meal.ingredients.forEach(function (item) {
+  ingredientsGrid.innerHTML += createIngredientItem(item);
+});
+
+document.getElementById("ingredients-count").textContent = meal.ingredients.length + " items";
   document.getElementById("all-recipes-section").classList.add("hidden");
   document.getElementById("meal-details").classList.remove("hidden");
 }
