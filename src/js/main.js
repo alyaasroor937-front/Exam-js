@@ -130,8 +130,27 @@ document.getElementById("log-meal-btn").addEventListener("click", function () {
   const log = JSON.parse(localStorage.getItem("foodLog")) || [];
   log.push({ id: currentMeal.id, name: currentMeal.name, calories: 485, protein: 42, carbs: 52, fat: 8 });
   localStorage.setItem("foodLog", JSON.stringify(log));
+  renderFoodLog();
   alert("Meal logged!");
 });
+function renderFoodLog() {
+  const log = JSON.parse(localStorage.getItem("foodLog")) || [];
+  const list = document.getElementById("logged-items-list");
+
+  if (log.length === 0) return;
+
+  list.innerHTML = "";
+  log.forEach(function (item) {
+    list.innerHTML +=`
+      <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+        <span class="font-medium text-gray-900">${item.name}</span>
+        <span class="text-sm text-gray-600">${item.calories} kcal</span>
+      </div>
+    `;
+  });
+}
+
+renderFoodLog();
 getCategories();
 getMales();
 
